@@ -1,0 +1,46 @@
+#!/bin/bash
+server(){
+http_server="nginx"
+db_server="mysql"
+
+if [[ "$1" != "status" ]]; then
+	sudo systemctl $1 $http_server
+	sudo systemctl $1 $db_server
+else
+	systemctl $1 $http_server
+	systemctl $1 $db_server
+fi
+	echo -en " \e[0m\e[32;1mDone. \e[0m\n"
+}
+
+case $1 in
+"start")
+	echo -en "\e[33;1mStart server...\e[0m "
+	server start
+	;;
+"stop")
+	echo -en "\e[33;1mStop server...\e[0m "
+	server stop
+	;;
+"restart")
+	echo -en "\e[33;1mRestart server...\e[0m "
+	server restart
+	;;
+"reload")
+	echo -en "\e[33;1mReload configure files...\e[31m "
+	server reload
+	;;
+"enable")
+	echo -en "\e[33;1mEnable services...\e[0m\n"
+	server enable
+	;;
+"disable")
+	echo -en "\e[33;1mDisable services...\e[0m\n"
+	server disable
+	;;
+"status")
+	server status
+	;;
+	*)
+	echo -en "\e[31;1mCommand not found!\e[0m\n"
+esac

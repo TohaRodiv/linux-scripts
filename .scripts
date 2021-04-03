@@ -1,0 +1,4 @@
+# Custom scripts
+CS_PATH='/home/toha/.scripts'
+alias server='$CS_PATH/server'
+alias inet='$CS_PATH/inet'

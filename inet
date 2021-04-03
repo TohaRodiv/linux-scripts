@@ -1,0 +1,9 @@
+#!/bin/bash
+
+ttl=65
+sudo iptables -t mangle -A POSTROUTING -j TTL --ttl-set $ttl
+if [[ "$1" == "wifi" ]]; then
+sudo wifi-menu
+else
+sudo dhcpcd
+fi
